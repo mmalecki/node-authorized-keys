@@ -19,6 +19,11 @@ vows.describe('authorized-keys').addBatch({
         'it should be there': function (keys) {
           assert.lengthOf(keys.keys, 1);
           assert.deepEqual(keys.keys[0], new AuthorizedKeys.Key(testKey));
+        },
+        'it should be searchable by name': function (keys) {
+          var search = keys.getByName(testKey.name);
+          assert.lengthOf(search, 1);
+          assert.deepEqual(search[0], new AuthorizedKeys.Key(testKey));
         }
       }
     }
